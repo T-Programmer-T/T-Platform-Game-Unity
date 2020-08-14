@@ -8,18 +8,22 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour { 
 
-public float Jump;
+    public float Jump;
 
-public bool isGround = false;
+    public bool isGround = false;
 
-  void Start()
+    public GameObject bulletPrefabs;
+
+    public bool isLeft = false;
+
+    void Start()
  
     {
 
 
     }
 
-  void Update()
+    void Update()
 
     {
         if (Input.GetKey(KeyCode.RightArrow))
@@ -34,7 +38,10 @@ public bool isGround = false;
             anim.SetFloat("Speed",5);
             
             transform.localScale = new Vector3(0.3f, 0.3f,1);
-            
+
+            isLeft = false;
+
+
         }
         
         else if (Input.GetKey(KeyCode.LeftArrow))
@@ -50,7 +57,10 @@ public bool isGround = false;
             anim.SetFloat("Speed",5);
             
             transform.localScale = new Vector3(-0.3f, 0.3f, 1);
-        
+
+            isLeft = true;
+
+
         }
 
         else
@@ -83,7 +93,26 @@ public bool isGround = false;
         
         }
 
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            Fire();
+        }
+
     }
+
+    void Fire()
+    {
+        GameObject bullet = Instantiate(bulletPrefabs, transform.position, Quaternion.identity);
+        if (isLeft)
+        {
+            bullet.GetComponent<Rigidbody2D>().velocity = new Vector2(-10, 0);
+        }
+        else
+        {
+            bullet.GetComponent<Rigidbody2D>().velocity = new Vector2(10, 0);
+        }
+    }
+
 
     private void OnCollisionEnter2D(Collision2D collision)
     

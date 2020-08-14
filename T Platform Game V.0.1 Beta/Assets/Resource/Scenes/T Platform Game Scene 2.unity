@@ -597,6 +597,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Jump: 1200
   isGround: 0
+  bulletPrefabs: {fileID: 6141033064517706645, guid: b3d8d921aacc646799b5c6cf12eedfc8,
+    type: 3}
+  isLeft: 0
 --- !u!95 &809501726
 Animator:
   serializedVersion: 3
